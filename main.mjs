@@ -12,6 +12,7 @@ const area = document.querySelector('.area');
 
 const textContainer = document.querySelector('.textContainer');
 //textContainer.classList.add("textContainer");
+const text = document.querySelector('.text');
 
 const bell = document.querySelector('.bell');
 
@@ -24,14 +25,22 @@ let compassText = document.querySelector('.compassText')
 const quill = document.querySelector('.quill');
 quill.addEventListener('click', inputQuill);
 
-const firstInput = document.createElement("input");
-firstInput.type = "text";
-//firstInput.value ="three north";
+
+const firstInput = document.querySelector("#firstInput");
+//firstInput.type = "text";
+//const value = firstInput.value;
+
+
+const value = document.querySelector('#firstInput').value;
+const correctInput = ["Three North", "three norths", "the three norths"]
 firstInput.className = "firstInput"; // set the CSS class//same as classList.add? it works
+const lowercasedValue = value.toLowerCase();
 
 const firstSubmit = document.createElement("button");
 firstSubmit.type = "submit";
 firstSubmit.textContent = "Enter"
+
+
 
 //Audios
 const windAudio = new Audio('./resurssit/sound/wind.mp3');
@@ -44,11 +53,20 @@ bell.addEventListener('click', playBell);
 
 
 //Buttons
-const soundButton = document.createElement('button');
-soundButton.classList.add("soundButton");
-firstContainer.appendChild(soundButton);
-soundButton.innerHTML ="Sound";
+//const soundButton = document.createElement('button');
+//soundButton.classList.add("soundButton");
+//firstContainer.appendChild(soundButton);
+//soundButton.innerHTML ="Sound";
+const soundButton = document.querySelector('.soundButton');
 soundButton.addEventListener('click', soundOn );
+
+
+
+
+//counters
+let puzzleCount = 2;
+const puzzleCounter = document.querySelector('.puzzleCounter');
+puzzleCounter.innerHTML = puzzleCount;
 
 
 
@@ -63,10 +81,12 @@ function timeOutText() {
         area.style.display = 'flex';
       }, 1000);
       setTimeout(() => {
-        textContainer.innerHTML="Once there was a great mystery." ;
+        text.innerHTML= "Once there was a great mystery." ;
+
       }, 3500);
       setTimeout(() => {
-        textContainer.innerHTML="...";
+        text.innerHTML="..." ;
+
       }, 6000);
 }
 
@@ -88,8 +108,10 @@ function showCompassText() {
 
 
 function inputQuill(){
-    textContainer.appendChild(firstInput);
+    firstInput.style.display= "block";
+    //textContainer.appendChild(firstInput);
     textContainer.appendChild(firstSubmit);
+    checkPuzzles();
 }
 
 
@@ -97,10 +119,11 @@ function inputQuill(){
 
 function moveNext() {
 
-  if((firstInput.value == "three" + "north")){
 
+  if(lowercasedValue.includes("three north")){  //works also the three norths
  
     bellAudio.play();
+    checkPuzzles();
 
     setTimeout(() => {
         window.location.href = 'second.html';
@@ -109,11 +132,19 @@ function moveNext() {
 
     }
 
-    
+    else{
+      text.innerHTML="...no." ;
+      
+    }
 
 }
 
-
+function checkPuzzles() {
+  puzzleCount --;
+  puzzleCounter.innerHTML = puzzleCount;
+ }
+ 
+ 
 
 firstSubmit.addEventListener("click", moveNext);
 
