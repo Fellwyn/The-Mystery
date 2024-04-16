@@ -1,5 +1,7 @@
+document.addEventListener("DOMContentLoaded", function() {
 
-
+  gramofoniSubmit.addEventListener('click', checkMusic)
+});
 
 const secondContainer = document.querySelector('.secondContainer');
 const rotatedOuter = document.querySelector('.sun');
@@ -8,13 +10,13 @@ rotatedOuter.addEventListener('click', rotateUpper);
 const rotatedInner = document.querySelector('.sunInner');
 rotatedInner.addEventListener('click', rotateInner);
 
-const text = document.querySelector('.text');
+const clockText = document.querySelector('.clockText');
 
 
 const gramofoniInput = document.querySelector('#music');
 const gramofoniSubmit = document.querySelector('.gramofoniSubmit');
-let value = gramofoniInput.value;
-gramofoniSubmit.addEventListener('click', checkMusic)
+
+
 
 const clock = document.querySelector('.clock');
 clock.addEventListener('click', clockAudioPlay);
@@ -52,6 +54,10 @@ gramofoniError.loop = false;
 
 const clockAudio = new Audio('./resurssit/sound/windup.mp3');
 function clockAudioPlay() {
+  clockText.style.display = "block";
+  setTimeout(() => {
+    clockText.style.display = "none";
+  },2000)
   clockAudio.play();
 }
 
@@ -64,9 +70,8 @@ function soundOn() {
   wavesAudio.play();
 }
 
-
-
-
+const click1 = new Audio('./resurssit/sound/click1.mp3');
+const click2 = new Audio('./resurssit/sound/click2.mp3');
 
 
 
@@ -82,8 +87,8 @@ const angle2 = 45;
 
 
 function rotateUpper() {
-
   corCount ++;
+  click2.play();
   rotation1 = (rotation1 + angle1) % 360;
 
   rotatedOuter.style.transform = `rotate(${rotation1}deg)`;
@@ -94,7 +99,7 @@ function rotateUpper() {
 
 function rotateInner() {
   sunCount ++;
-
+  click1.play();
 
   rotation2 = (rotation2 + angle2) % 360;
 
@@ -119,14 +124,22 @@ if(corCount === 6 && sunCount === 4 ) {
 
 
 function checkMusic(target) {
+  let value = gramofoniInput.value;
+
 if(value == 4){
   wavesAudio.pause();
   gramofoniAudio.play()
   checkPuzzles();
+  gramofoniInput.value="";
 
 }else{
+  gramofoniInput.value="";
+  wavesAudio.pause();
   gramofoniError.play()
 
+  setTimeout(() => {
+    wavesAudio.play();
+  },2000)
 }
 }
 

@@ -1,8 +1,22 @@
+document.addEventListener("DOMContentLoaded", function() {
+
+  const firstContainer = document.querySelector('.firstContainer');
+
+  firstSubmit.addEventListener("click", moveNext);
+  document.addEventListener('keydown', handleKeyPress);
+  function handleKeyPress(event) {
+      
+      if (event.key === 'Enter') {
+          moveNext();
+      }
+
+  }
 
 
+});
 
 //containers etc
-const firstContainer = document.querySelector('.firstContainer');
+
 
 const magnifier = document.querySelector('.magnifier')
 magnifier.addEventListener('click', timeOutText);
@@ -31,15 +45,15 @@ const firstInput = document.querySelector("#firstInput");
 //const value = firstInput.value;
 
 
-const value = document.querySelector('#firstInput').value;
-const correctInput = ["Three North", "three norths", "the three norths"]
+
+
 firstInput.className = "firstInput"; // set the CSS class//same as classList.add? it works
-const lowercasedValue = value.toLowerCase();
+
 
 const firstSubmit = document.createElement("button");
 firstSubmit.type = "submit";
 firstSubmit.textContent = "Enter"
-
+firstSubmit.className="firstSubmit";
 
 
 //Audios
@@ -100,7 +114,7 @@ function playBell() {
 
 
 function showCompassText() {
-    compassText.innerHTML="Up, up my way goes... "
+    compassText.innerHTML="Up, up to the cold place my way goes... "
     setTimeout(() => {
       compassText.innerHTML="";
     }, 3000);
@@ -112,18 +126,26 @@ function inputQuill(){
     //textContainer.appendChild(firstInput);
     textContainer.appendChild(firstSubmit);
     checkPuzzles();
+    text.innerHTML= "Give me two words." ;
 }
 
 
 
 
 function moveNext() {
+  const value = document.querySelector('#firstInput').value;
+  const lowercasedValue = value.toLowerCase();
 
-
-  if(lowercasedValue.includes("three north")){  //works also the three norths
+  if(lowercasedValue.includes("three north") || lowercasedValue.includes("north three")){  //works also the three norths
  
+    text.innerHTML="Correct." ;
     bellAudio.play();
     checkPuzzles();
+    firstInput.value = ""; 
+
+
+
+
 
     setTimeout(() => {
         window.location.href = 'second.html';
@@ -134,7 +156,10 @@ function moveNext() {
 
     else{
       text.innerHTML="...no." ;
-      
+      firstInput.value = ""; 
+      setTimeout(() => {
+        text.innerHTML="..." ;
+      }, 1000)
     }
 
 }
@@ -146,7 +171,6 @@ function checkPuzzles() {
  
  
 
-firstSubmit.addEventListener("click", moveNext);
 
 
 
