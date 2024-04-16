@@ -14,6 +14,10 @@ body {
     position:absolute;
     top: 1%;
     left: 1%;
+
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(223, 188, 125);
 }
 
 
@@ -70,11 +74,11 @@ body {
 
 .bell {
     background-image: url("../img/bell.png");
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 
-    width: 100px;
-    height: 150px;
+    width: 210px;
+    height: 310px;
 
     position: absolute;
     top: 4.5%;
@@ -102,19 +106,24 @@ body {
 
 
 .area{
-    background-image: url("../img/frame.png");
-    background-size: contain;
+    background-image: url("../img/paper.png");
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     position: relative;
+    padding: 2%;
 
-    width: 550px;
-    height: 400px;
+    width: 30%;
+    height: 40%;
 
     display: none;
     align-items: center;
     justify-content: center;
 
 
+
+    font-size: 25px;
+    font-weight: 500;
+    
 }
 
 .quill{
@@ -128,7 +137,7 @@ body {
 
 
     position: absolute;
-    top:7%;
+    top:25%;
     margin-left: 2%;
 }
 
@@ -163,20 +172,29 @@ body {
 }
 
 
-
+.firstSubmit{
+    background-color: rgb(223, 188, 125);
+    border-radius: 5px;
+    margin: 5px;
+}
 
 .puzzleCounterContainer{
+    background-image: url("../img/frame4.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
     position: absolute;
     bottom: 5%;
-    left: 45%;
-    width: 200px;
-    height: 100px;
+    left: 48%;
+    width: 110px;
+    height: 110px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    
 
-    border: 2px solid rgb(24, 22, 22);
+    font-weight: 800;
+
+    padding: 0px 0px;
 }
+
