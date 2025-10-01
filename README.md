@@ -2,8 +2,8 @@
 
 **[comment 10/2024: <br>
 This project was created during early phase of my JS journey and
-nowadays I use different approach to structures, styling and overall JS functionality]**
-<br>
+nowadays I use different approach to structures, styling and overall JS functionality]** <br><br>
+
 A game test where I was learning JS functionality and how to make simple puzzles. 
 The game has multiple HTML pages, each managed by separate Javascript file. 
 
